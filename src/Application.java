@@ -18,17 +18,13 @@ import java.util.List;
 public class Application {
 
 	public static void main(String[] args) {
-		
-		// Serialization
-		/*File serialfile = new File("french.dic");
-		if(!readSerialDic(diclist, serialfile)){
-			createDic(diclist, dicfile);
-			writeSerialDic(diclist, serialfile);
-		}*/
-		
+				
 		List<ScrabbleWord> diclist = new ArrayList<ScrabbleWord>();
-		String file = "./dic/french_utf-8.txt";
-		//File dicfile = new File("french-dic.txt");
+		String file;
+		if(args.length >= 1)
+			file = args[0];
+		else
+			file = "./dic/french_utf-8.txt";
 		String inputchar = null;
 		String inputfit = null;
 		
@@ -36,19 +32,14 @@ public class Application {
 		int run = 1;
 		
 		try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
-			
-			// loading dic data
-			//if(!readDic(diclist, dicfile)){
 				
-				// loading dic with file
-				while(!createDic(diclist, new File(file))){
-					
-					// catch user input
-					System.out.print("Dic file : ");
-					file = br.readLine();
-				}
-				//writeDic(diclist, dicfile);
-			//}
+			// loading dic with file
+			while(!createDic(diclist, new File(file))){
+				
+				// catch user input
+				System.out.print("Dic file : ");
+				file = br.readLine();
+			}
 			
 			// run
 			while(run == 1){
